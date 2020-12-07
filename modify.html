@@ -1,0 +1,87 @@
+	<html>
+
+	<nav class="uk-navbar">
+		<div class="uk-container uk-container-center">
+			<a class="uk-navbar-brand" href="."><img src="./assets/images/logo.png" width="200" height="38" title="安妮导刊" alt="安妮导刊LOGO"></a>
+			{pc:content action="category" catid="0" num="25" siteid="$siteid" order="listorder ASC"}
+			<ul class="uk-navbar-nav hidden-small">
+				<li {if !$catid} class="uk-active"{/if}><a href=".">首页</a></li>
+				{loop $data $r}
+				<li class="uk-parent{if $catid==$r[catid] || $top_parentid==$r[catid]} uk-active{/if}"> <a href="{$r[url]}">{$r[catname]}</a>
+					{pc:content action="category" catid="$r[catid]" num="25" siteid="{$siteid}" order="listorder ASC"}
+					{if $data}
+					<div class="uk-dropdown uk-dropdown-navbar">
+						<ul class="uk-nav uk-nav-navbar">
+							{loop $data $v}
+							<li><a href="{$v[url]}">{$v[catname]}</a></li>
+							{/loop}
+						</ul>
+					</div>
+					{/if}
+					{/pc}
+				</li>
+				{/loop}
+			</ul>
+			{/pc}
+			<div class="uk-navbar-flip"><a href="#tm-offcanvas" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas=""></a></div>
+		</div>
+	</nav>
+		<style type="text/css">
+			@media (max-width: 767px) {
+				ul.uk-navbar-nav {
+					background: #fff;
+					width: 30%;
+					margin-top: 40px;
+					position: absolute;
+					right: 0;
+				}
+				ul.uk-navbar-nav > li {
+					display: block;
+					width: 100%;
+					margin-left: 0;
+				}
+				div.uk-navbar-flip {
+					position: absolute;
+					top: 0;
+					right: 10px;
+				}
+			}
+		</style>
+		<script>
+			var cls = 'mobile-client';
+			var style = '';
+			style += '<style type="text/css">';
+			style += '	@media (max-width: 767px) {';
+			style += '		ul.uk-navbar-nav {';
+			style += '			background: #fff;';
+			style += '			width: 30%;';
+			style += '			margin-top: 40px;';
+			style += '			position: absolute;';
+			style += '			right: 0;';
+			style += '		}';
+			style += '		ul.uk-navbar-nav > li {';
+			style += '			display: block;';
+			style += '			width: 100%;';
+			style += '			margin-left: 0;';
+			style += '		}';
+			style += '		div.uk-navbar-flip {';
+			style += '			position: absolute;';
+			style += '			top: 0;';
+			style += '			right: 10px;';
+			style += '		}';
+			style += '	}';
+			style += '</style>';
+			$(document).on('click', '.uk-navbar-flip', function()
+			{
+				if (!$(this).hasClass(cls))
+				{
+					$(this).addClass(cls);
+					$('head').append($(style));
+					console.log('yes');
+					$('.uk-parent > div.uk-dropdown-navbar').remove();
+				}
+
+			 	$('.uk-navbar-nav').toggle();
+			});
+		</script>
+	</html>
