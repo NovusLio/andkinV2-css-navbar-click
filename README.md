@@ -2,7 +2,7 @@
 
 ## 方案一(调用《andkinV2响应式风格》模板的移动端导航栏) :
 
-### 1. 在 footer.html 文件中渲染移动端导航栏内容
+### 在 footer.html 文件中渲染移动端导航栏内容
 
 ```html
 <div id="tm-offcanvas" class="uk-offcanvas">
@@ -57,7 +57,7 @@
 
 ## 方案二 :
 
-### 1. 在 footer.html 文件添加如下 js 代码
+### 在 footer.html 文件添加以下代码
 
 ```html
 <script>
